@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -81,6 +82,14 @@ public class RecycleFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycleView);
        pgbar=view.findViewById(R.id.pgbar);
         pgbar.setVisibility(View.VISIBLE);
+        FloatingActionButton scan = view.findViewById(R.id.scan);
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(),DetectingActivity.class);
+                startActivity(intent);
+            }
+        });
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
         materialArrayList=new ArrayList<>();

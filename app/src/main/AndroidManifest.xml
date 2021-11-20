@@ -4,9 +4,18 @@
     package="com.example.threer">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -16,9 +25,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".SignIn">
-
-        </activity>
+        <activity android:name=".DetectingActivity"></activity>
+        <activity android:name=".SignIn"></activity>
         <activity android:name=".BookmarkedActivity" />
         <activity android:name=".ProductDescriptionActivity" />
         <activity android:name=".BuyActivity" />
@@ -27,9 +35,7 @@
         <activity android:name=".MaterialDisplayActivity" />
         <activity android:name=".PreviousRequestsActivity" />
         <activity android:name=".RecycleNowActivity" />
-        <activity android:name=".Login2Activity">
-
-        </activity>
+        <activity android:name=".Login2Activity"></activity>
         <activity android:name=".DetailActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
