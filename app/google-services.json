@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "23871101867",
+    "firebase_url": "https://rhackathon-24210-default-rtdb.firebaseio.com",
+    "project_id": "rhackathon-24210",
+    "storage_bucket": "rhackathon-24210.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23871101867:android:2c7ddd54aade093002d0ee",
+        "android_client_info": {
+          "package_name": "com.example.a3rs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23871101867-m95skp12jff0uieknoiqcb0v0a2cmf3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRzResmV9w2VIYKTEJdo2TfMnseNhteQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23871101867-m95skp12jff0uieknoiqcb0v0a2cmf3n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23871101867:android:6e1b4d97f296600c02d0ee",
+        "android_client_info": {
+          "package_name": "com.example.threer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "23871101867-m95skp12jff0uieknoiqcb0v0a2cmf3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRzResmV9w2VIYKTEJdo2TfMnseNhteQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "23871101867-m95skp12jff0uieknoiqcb0v0a2cmf3n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">3R\'s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Paste BOTH strings as required -->
+    <string name="back4app_app_id">V3TraaMOqNmhYzhvKSW9eStpr24I9pr1RaDuI4aQ
+</string>
+    <string name="back4app_client_key">A2724OIITkqWkpVo8fpY14Z3a1wVu2VovQ9jd1dA</string>
+</resources>
