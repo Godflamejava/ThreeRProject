@@ -3,7 +3,10 @@ package com.example.threer;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +46,9 @@ public class ReuseItemAdapter extends RecyclerView.Adapter<ReuseItemAdapter.View
          ReuseItem item=reuseItemArrayList.get(position);
 holder.itemName.setText(item.getName());
 holder.itemDescription.setText(item.getDescription());
+
 Picasso.get().load(item.getImage()).into(holder.itemImage);
+
 holder.price.setText("Price:"+item.getPrice()+" coins");
 
 holder.buy.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +85,8 @@ holder.connect.setOnClickListener(new View.OnClickListener() {
     }
 });
 
+
+
     }
 
     @Override
@@ -100,6 +107,17 @@ holder.connect.setOnClickListener(new View.OnClickListener() {
             itemImage=itemView.findViewById(R.id.itemImage);
             connect=itemView.findViewById(R.id.connect);
             buy=itemView.findViewById(R.id.buy);
+        }
+    }
+
+    public Bitmap StringToBitMap(String encodedString){
+        try {
+            byte [] encodeByte= Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch(Exception e) {
+            e.getMessage();
+            return null;
         }
     }
 }

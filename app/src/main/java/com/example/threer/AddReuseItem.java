@@ -14,11 +14,13 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
@@ -58,6 +60,7 @@ ImageView cancel;
         SharedPreferences sh = getSharedPreferences("3r", MODE_PRIVATE);
         String email = sh.getString("email", "");
         Button added_Items=findViewById(R.id.added_Items);
+        ProgressBar pgbar =findViewById(R.id.pgbar);
         EditText itemName=findViewById(R.id.itemName);
         EditText itemDescription=findViewById(R.id.itemDescription);
         EditText itemMobileNumber=findViewById(R.id.itemMobileNumber);
@@ -128,11 +131,28 @@ ImageView cancel;
         add_Item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pgbar.setVisibility(View.VISIBLE);
                 if(imageUrl!=null&&!itemName.getText().toString().equals("")&&!itemDescription.getText().toString().equals(null)&&!itemPrice.getText().toString().equals( null)&&!itemMobileNumber.getText().toString().equals(null))
                 {
                         String uri="https://i.pinimg.com/originals/44/a3/3a/44a33a79654203b308704285704027fa.jpg";
+
+
+//                    image.setDrawingCacheEnabled(true);
+//                    image.buildDrawingCache();
+//                    Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
+//
+//                   String uri= BitMapToString( bitmap);
+
                     ReuseItem item=new ReuseItem(itemName.getText().toString(),itemDescription.getText().toString(),itemPrice.getText().toString(),itemMobileNumber.getText().toString(),uri,"applied");
-                    FirebaseDatabase.getInstance().getReference("RuseItems").child(String.valueOf(System.currentTimeMillis())).setValue(item);
+                    FirebaseDatabase.getInstance().getReference("RuseItems").child(String.valueOf(System.currentTimeMillis())).setValue(item).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            pgbar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(AddReuseItem.this, "Congrats it's uploaded", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
 
 //                    final StorageReference filePath = FirebaseStorage.getInstance().getReference("images")
 //                        .child(System.currentTimeMillis() + "." + "pdf");
@@ -216,78 +236,14 @@ ImageView cancel;
 
 
 
-//    private void uploadImage() {
-//        Uri filePath = imageUrl;
-//        if (filePath != null) {
-//
-//            // Code for showing progressDialog while uploading
-//            ProgressDialog progressDialog
-//                    = new ProgressDialog(this);
-//            progressDialog.setTitle("Uploading...");
-//            progressDialog.show();
-//
-//            // Defining the child of storageReference
-//            StorageReference ref
-//                    = storageReference
-//                    .child(
-//                            "images/"
-//                                    + UUID.randomUUID().toString());
-//
-//            // adding listeners on upload
-//            // or failure of image
-//            ref.putFile(filePath)
-//                    .addOnSuccessListener(
-//                            new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//
-//                                @Override
-//                                public void onSuccess(
-//                                        UploadTask.TaskSnapshot taskSnapshot) {
-//
-//                                    // Image uploaded successfully
-//                                    // Dismiss dialog
-//                                    progressDialog.dismiss();
-//                                    Toast
-//                                            .makeText(AddReuseItem.this,
-//                                                    "Image Uploaded!!",
-//                                                    Toast.LENGTH_SHORT)
-//                                            .show();
-//                                }
-//                            })
-//
-//                    .addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//
-//                            // Error, Image not uploaded
-//                            progressDialog.dismiss();
-//                            Toast
-//                                    .makeText(AddReuseItem.this,
-//                                            "Failed " + e.getMessage(),
-//                                            Toast.LENGTH_SHORT)
-//                                    .show();
-//                        }
-//                    })
-//                    .addOnProgressListener(
-//                            new OnProgressListener<UploadTask.TaskSnapshot>() {
-//
-//                                // Progress Listener for loading
-//                                // percentage on the dialog box
-//                                @Override
-//                                public void onProgress(
-//                                        UploadTask.TaskSnapshot taskSnapshot) {
-//                                    double progress
-//                                            = (100.0
-//                                            * taskSnapshot.getBytesTransferred()
-//                                            / taskSnapshot.getTotalByteCount());
-//                                    progressDialog.setMessage(
-//                                            "Uploaded "
-//                                                    + (int) progress + "%");
-//                                }
-//                            });
-//        }
-//
-//
-//    }
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+        Log.i("markit",temp);
+        return temp;
+    }
 
 
 }
