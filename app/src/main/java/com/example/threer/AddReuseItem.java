@@ -2,10 +2,16 @@ package com.example.threer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +39,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.net.URL;
 import java.util.UUID;
 
@@ -129,7 +136,7 @@ ImageView cancel;
 
 //                    final StorageReference filePath = FirebaseStorage.getInstance().getReference("images")
 //                        .child(System.currentTimeMillis() + "." + "pdf");
-//
+
 //                    StorageTask uploadtask = filePath.putFile(imageUrl);
 //                    uploadtask.continueWithTask(new Continuation() {
 //                        @Override
@@ -151,7 +158,29 @@ ImageView cancel;
 //
 //                        }
 //                    });
+//
 
+
+//                    image.setDrawingCacheEnabled(true);
+//                    image.buildDrawingCache();
+//                    Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
+//                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//                    byte[] data = baos.toByteArray();
+//
+//
+//                    UploadTask uploadTask = filePath.putBytes(data);
+//                    uploadTask.addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception exception) {
+//                            Log.i("ritik"," failed");
+//                        }
+//                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                            Log.i("ritik","finally done");
+//                        }
+//                    });
 
                 }
                 else

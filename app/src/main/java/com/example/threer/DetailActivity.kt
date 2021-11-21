@@ -39,7 +39,7 @@ class DetailActivity : AppCompatActivity() {
             val sharedPreferences: SharedPreferences = this.getSharedPreferences("3r", Context.MODE_PRIVATE)
             val email = sharedPreferences.getString("email", "example@gmail")
             val newEmail = email?.dropLast(4)
-            val detailClass = DetailClass(email, name, address, city, country, zipcode, phone)
+            val detailClass = DetailClass(email, name, address, city, country, zipcode, phone,"00")
 
 
             if (newEmail != null) {
